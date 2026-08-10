@@ -3,3 +3,4 @@
 /_site/
 /Gemfile.lock
 /_js/
+/node_modules/

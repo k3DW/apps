@@ -35,14 +35,15 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - name: npm ci
+        run: npm ci
       - name: Compile TypeScript (esbuild)
-        # Finds every .tsx file anywhere in the repo and compiles it to a
-        # .js file in the same folder. Using `--outbase=.` anchors paths
-        # to the repo root, so nested folder structure is preserved.
-        run: |
-          shopt -s globstar
-          npx esbuild **/*.ts --bundle --minify --outbase=. --outdir=./_js
-          npx esbuild **/*.tsx --bundle --minify --outbase=. --outdir=./_js
+        run: node ./_build.js
       - name: Setup Ruby
         # https://github.com/ruby/setup-ruby/releases/tag/v1.207.0
         uses: ruby/setup-ruby@4a9ddd6f338a97768b8006bf671dfbad383215f4

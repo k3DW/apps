@@ -1,20 +1,11 @@
 #!/bin/bash
-# This file is to help with local builds
 
-while [ -n "$1" ]; do
-    case "$1" in
-        js)
-            shopt -s globstar \
-                && npx esbuild **/*.ts --bundle --minify --outbase=. --outdir=$(dirname ${BASH_SOURCE[0]})/_js \
-                && npx esbuild **/*.tsx --bundle --minify --outbase=. --outdir=$(dirname ${BASH_SOURCE[0]})/_js \
-            || exit 1
-            ;;
-        *)
-            echo "Unknown argument: $1"
-            exit 1
-            ;;
-    esac
-    shift
-done
+if [ -n "$1" ]; then
+    echo "This script takes no arguments" >&2
+    exit 1
+fi
 
-bundle exec jekyll serve --incremental
+node "$(dirname ${BASH_SOURCE[0]})/_build.js" \
+    || exit 1
+bundle exec jekyll serve --incremental \
+    || exit 1
