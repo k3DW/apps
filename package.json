@@ -12,5 +12,9 @@
   "dependencies": {
     "esbuild": "^0.28.2",
     "glob": "^13.0.6"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4"
   }
 }
