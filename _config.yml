@@ -1,2 +1,5 @@
 exclude:
+  - "**/*.ts"
   - "**/*.tsx"
+include:
+  - _js
