@@ -41,8 +41,8 @@ jobs:
         # to the repo root, so nested folder structure is preserved.
         run: |
           shopt -s globstar
-          npx esbuild **/*.ts --bundle --outbase=. --outdir=/_js
-          npx esbuild **/*.tsx --bundle --outbase=. --outdir=/_js
+          npx esbuild **/*.ts --bundle --outbase=. --outdir=./_js
+          npx esbuild **/*.tsx --bundle --outbase=. --outdir=./_js
       - name: Setup Ruby
         # https://github.com/ruby/setup-ruby/releases/tag/v1.207.0
         uses: ruby/setup-ruby@4a9ddd6f338a97768b8006bf671dfbad383215f4

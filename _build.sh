@@ -5,8 +5,8 @@ while [ -n "$1" ]; do
     case "$1" in
         js)
             shopt -s globstar \
-                && npx esbuild **/*.ts --bundle --outbase=. --outdir=/_js \
-                && npx esbuild **/*.tsx --bundle --outbase=. --outdir=/_js \
+                && npx esbuild **/*.ts --bundle --outbase=. --outdir=$(dirname ${BASH_SOURCE[0]})/_js \
+                && npx esbuild **/*.tsx --bundle --outbase=. --outdir=$(dirname ${BASH_SOURCE[0]})/_js \
             || exit 1
             ;;
         *)
