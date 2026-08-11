@@ -18,7 +18,7 @@ async function main() {
   await esbuild.build({
     entryPoints,
     bundle: true,
-    minify: true,
+    minify: false,
     outbase: '.',
     outdir,
   })
