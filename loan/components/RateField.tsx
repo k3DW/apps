@@ -1,6 +1,7 @@
 import { RadioGroup, RadioOption } from "./RadioGroup";
 import { Compounding } from "../finance";
 import { styles } from "../styles";
+import { NumericBox } from "./NumericBox";
 
 const COMPOUNDING_OPTIONS: RadioOption<Compounding>[] = [
   { value: "monthly", label: "Monthly" },
@@ -10,12 +11,11 @@ const COMPOUNDING_OPTIONS: RadioOption<Compounding>[] = [
 export interface RateFieldProps {
   value: number | "";
   onChange: (value: number | "") => void;
-  step?: number;
   compounding: Compounding;
   onCompoundingChange: (value: Compounding) => void;
 }
 
-export function RateField({ value, onChange, step, compounding, onCompoundingChange }: RateFieldProps) {
+export function RateField({ value, onChange, compounding, onCompoundingChange }: RateFieldProps) {
   return (
     <div style={styles.fieldWrap}>
       <div style={styles.fieldLabelRow}>
@@ -27,15 +27,7 @@ export function RateField({ value, onChange, step, compounding, onCompoundingCha
           onChange={onCompoundingChange}
         />
       </div>
-      <div style={styles.fieldBox}>
-        <input
-          type="number"
-          value={value}
-          step={step}
-          onChange={(e) => onChange(e.target.value === "" ? "" : Number(e.target.value))}
-          style={styles.fieldInput}
-        />
-      </div>
+      <NumericBox value={value} onChange={onChange} />
     </div>
   );
 }

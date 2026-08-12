@@ -1,6 +1,5 @@
-const { useState, useMemo } = React;
-
 import { styles } from "../styles";
+import { NumericBox } from "./NumericBox";
 
 export interface FieldProps {
   label: string;
@@ -9,38 +8,11 @@ export interface FieldProps {
   prefix?: string;
 }
 
-const isPositiveNumber = (s: String): boolean => {
-  if (s.trim() !== "") {
-    let num = Number(s);
-    return isFinite(num) && num >= 0;
-  }
-  return false;
-};
-
 export function Field({ label, value, onChange, prefix }: FieldProps) {
-  const [text, setText] = useState(String(value));
-
-  const handleChange = (e) => {
-    const newText = e.target.value;
-    setText(newText); // always update the local text so the user can keep typing
-    // if invalid, we simply don't call onChange
-    if (isPositiveNumber(newText)) {
-      onChange(Number(newText));
-    }
-  };
-
   return (
     <div style={styles.fieldWrap}>
       <label style={styles.fieldLabel}>{label}</label>
-      <div style={isPositiveNumber(text) ? styles.fieldBox : styles.fieldBoxInvalid}>
-        {prefix && <span style={styles.fieldPrefix}>{prefix}</span>}
-        <input
-          type="text"
-          value={text}
-          onChange={handleChange}
-          style={styles.fieldInput}
-        />
-      </div>
+      <NumericBox value={value} onChange={onChange} prefix={prefix} />
     </div>
   );
 }
