@@ -67,6 +67,7 @@ export const styles: Record<string, React.CSSProperties> = {
     accentColor: theme.color.goldMuted,
     cursor: "pointer",
   },
+
   fieldBox: {
     display: "flex",
     alignItems: "center",
@@ -75,6 +76,16 @@ export const styles: Record<string, React.CSSProperties> = {
     background: theme.color.white,
     padding: "10px 14px",
   },
+  fieldBoxInvalid: {
+    display: "flex",
+    alignItems: "center",
+    border: `1px solid ${theme.color.hairline}`,
+    borderRadius: theme.radius,
+    background: theme.color.errorRed,
+    padding: "10px 14px",
+  },
+
+
   fieldPrefix: { marginRight: theme.space(1.5), color: theme.color.goldMuted },
   fieldInput: {
     border: "none",

@@ -11,6 +11,7 @@ export const theme = {
     panelTextMuted: "#C9C0AC",
     panelBorder: "#3A4A52",
     white: "#FFFFFF",
+    errorRed: "#ff8282",
   },
   font: {
     display: "'Georgia', serif",

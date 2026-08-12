@@ -11,7 +11,6 @@ function ChangeAmortizationFields({ params, onChange }: { params: ChangeAmortiza
       label="New amortization (years)"
       value={params.years}
       onChange={(v) => onChange({ ...params, years: v })}
-      step={1}
     />
   );
 }

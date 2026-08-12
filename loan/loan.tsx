@@ -30,8 +30,8 @@ function LoanPanel({ loan, onUpdate }: { loan: LoanState; onUpdate: (patch: Part
         background: "#fff",
       }}
     >
-      <Field label="Principal (loan amount)" value={loan.principal} onChange={(v) => onUpdate({ principal: v })} prefix="$" step={1000} />
-      <Field label="Amortization (years)" value={loan.years} onChange={(v) => onUpdate({ years: v })} step={1} />
+      <Field label="Principal (loan amount)" value={loan.principal} onChange={(v) => onUpdate({ principal: v })} prefix="$" />
+      <Field label="Amortization (years)" value={loan.years} onChange={(v) => onUpdate({ years: v })} />
       <RateField value={loan.rate} onChange={(v) => onUpdate({ rate: v })} step={0.05} compounding={loan.compounding} onCompoundingChange={(v) => onUpdate({ compounding: v })} />
       <StartField month={loan.startMonth} year={loan.startYear} onMonthChange={(m) => onUpdate({ startMonth: m })} onYearChange={(y) => onUpdate({ startYear: y })} />
       <EventsSection loan={loan} onChange={(events) => onUpdate({ events })} />

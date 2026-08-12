@@ -1,3 +1,5 @@
+const { useState, useMemo } = React;
+
 import { styles } from "../styles";
 
 export interface FieldProps {
@@ -5,20 +7,37 @@ export interface FieldProps {
   value: number | "";
   onChange: (value: number | "") => void;
   prefix?: string;
-  step?: number;
 }
 
-export function Field({ label, value, onChange, prefix, step }: FieldProps) {
+const isPositiveNumber = (s: String): boolean => {
+  if (s.trim() !== "") {
+    let num = Number(s);
+    return isFinite(num) && num >= 0;
+  }
+  return false;
+};
+
+export function Field({ label, value, onChange, prefix }: FieldProps) {
+  const [text, setText] = useState(String(value));
+
+  const handleChange = (e) => {
+    const newText = e.target.value;
+    setText(newText); // always update the local text so the user can keep typing
+    // if invalid, we simply don't call onChange
+    if (isPositiveNumber(newText)) {
+      onChange(Number(newText));
+    }
+  };
+
   return (
     <div style={styles.fieldWrap}>
       <label style={styles.fieldLabel}>{label}</label>
-      <div style={styles.fieldBox}>
+      <div style={isPositiveNumber(text) ? styles.fieldBox : styles.fieldBoxInvalid}>
         {prefix && <span style={styles.fieldPrefix}>{prefix}</span>}
         <input
-          type="number"
-          value={value}
-          step={step}
-          onChange={(e) => onChange(e.target.value === "" ? "" : Number(e.target.value))}
+          type="text"
+          value={text}
+          onChange={handleChange}
           style={styles.fieldInput}
         />
       </div>

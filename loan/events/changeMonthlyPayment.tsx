@@ -12,7 +12,6 @@ function ChangeMonthlyPaymentFields({ params, onChange }: { params: ChangeMonthl
       value={params.amount}
       onChange={(v) => onChange({ ...params, amount: v })}
       prefix="$"
-      step={50}
     />
   );
 }

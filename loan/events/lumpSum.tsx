@@ -12,7 +12,6 @@ function LumpSumFields({ params, onChange }: { params: LumpSumParams; onChange: 
       value={params.amount}
       onChange={(v) => onChange({ ...params, amount: v })}
       prefix="$"
-      step={1000}
     />
   );
 }
