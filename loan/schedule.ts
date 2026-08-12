@@ -21,21 +21,27 @@ interface ScheduleResult {
 }
 
 export function generateSchedule(loan: LoanState): ScheduleResult {
-  const monthlyPayment = calculateMonthlyPayment({
+  let monthlyPayment = calculateMonthlyPayment({
     principal: Number(loan.principal),
     years: Number(loan.years),
     annualRatePct: Number(loan.rate),
     compounding: loan.compounding,
   });
   const monthlyRate = monthlyRateFromNominal(Number(loan.rate), loan.compounding);
+
   const startIdx = absMonthIndex(loan.startMonth, loan.startYear);
   const nominalMonths = Number(loan.years) * 12 || 0;
 
   const eventsByMonth = new Map<number, LoanEvent[]>();
+  let maxEventYears = Number(loan.years) || 0;
   for (const ev of loan.events) {
     const list = eventsByMonth.get(ev.monthIndex) || [];
     list.push(ev);
     eventsByMonth.set(ev.monthIndex, list);
+    if (ev.type === "changeAmortization") {
+      const years = Number(ev.params.years);
+      if (years > maxEventYears) maxEventYears = years;
+    }
   }
 
   const schedule: ScheduleMonth[] = [];
@@ -43,27 +49,57 @@ export function generateSchedule(loan: LoanState): ScheduleResult {
   let totalInterest = 0;
   let totalPaid = 0;
   let idx = startIdx;
-  const safetyCap = Math.max(nominalMonths, 12); // events only ever shorten payoff, this is a hard backstop
+  const safetyCap = Math.max(nominalMonths, maxEventYears * 12, 600); // support event-driven amortization extensions
 
   while (balance > 0.005 && idx - startIdx < safetyCap) {
+    const monthEvents = eventsByMonth.get(idx) || [];
+
+    let lumpSum = 0;
+    for (const ev of monthEvents) {
+      if (ev.type === "lumpSum") {
+        const config = EVENT_TYPES[ev.type];
+        if (config && config.apply) {
+          lumpSum += config.apply(ev.params);
+        }
+      }
+    }
+    if (lumpSum > balance) {
+      totalPaid += balance;
+      balance = 0;
+    } else {
+      totalPaid += lumpSum;
+      balance -= lumpSum;
+    }
+
+    for (const ev of monthEvents) {
+      if (ev.type === "changeMonthlyPayment") {
+        const amount = Number(ev.params.amount);
+        if (amount > 0) {
+          monthlyPayment = amount;
+        }
+      }
+      if (ev.type === "changeAmortization") {
+        const years = Number(ev.params.years);
+        if (years > 0) {
+          monthlyPayment = calculateMonthlyPayment({
+            principal: balance,
+            years: years,
+            annualRatePct: Number(loan.rate),
+            compounding: loan.compounding,
+          });
+        }
+      }
+    }
+
     const interest = balance * monthlyRate;
     let principalPaid = monthlyPayment - interest;
     if (principalPaid < 0) principalPaid = 0;
     if (principalPaid > balance) principalPaid = balance;
 
-    let lumpSum = 0;
-    for (const ev of eventsByMonth.get(idx) || []) {
-      const config = EVENT_TYPES[ev.type];
-      if (config) lumpSum += config.apply(ev.params);
-    }
-    const remainingAfterRegular = balance - principalPaid;
-    if (lumpSum > remainingAfterRegular) lumpSum = remainingAfterRegular;
-    if (lumpSum < 0) lumpSum = 0;
-
-    balance = balance - principalPaid - lumpSum;
+    balance = balance - principalPaid;
     if (balance < 0.005) balance = 0;
 
-    const totalCash = interest + principalPaid + lumpSum;
+    const totalCash = interest + principalPaid;
     totalInterest += interest;
     totalPaid += totalCash;
 

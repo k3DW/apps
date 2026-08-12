@@ -1,13 +1,17 @@
 const { useState, useMemo } = React;
 
 import { lumpSum } from "./lumpSum";
+import { changeMonthlyPayment } from "./changeMonthlyPayment";
+import { changeAmortization } from "./changeAmortization";
 import { EventTypeConfig } from "./_config";
+import { LoanState } from "../state";
 import { absMonthIndex, indexToLabel } from "../calendar";
 import { styles } from "../styles";
 
 export const EVENT_TYPES: Record<string, EventTypeConfig> = {
   lumpSum: lumpSum,
-  // Add more...
+  changeMonthlyPayment: changeMonthlyPayment,
+  changeAmortization: changeAmortization,
 };
 
 export interface LoanEvent {
