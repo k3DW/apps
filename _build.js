@@ -5,7 +5,7 @@ const { glob } = require('glob')
 async function main() {
   const outdir = path.join(__dirname, '_generated')
 
-  const entryPoints = await glob('**/*.{ts,tsx}', {
+  const entryPoints = await glob('**/main.{ts,tsx}', {
     cwd: process.cwd(),
     ignore: 'node_modules/**',
   })
