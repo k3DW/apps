@@ -2,4 +2,4 @@ exclude:
   - "**/*.ts"
   - "**/*.tsx"
 include:
-  - _js
+  - _generated

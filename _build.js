@@ -3,7 +3,7 @@ const esbuild = require('esbuild')
 const { glob } = require('glob')
 
 async function main() {
-  const outdir = path.join(__dirname, '_js')
+  const outdir = path.join(__dirname, '_generated')
 
   const entryPoints = await glob('**/*.{ts,tsx}', {
     cwd: process.cwd(),
