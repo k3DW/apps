@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 export interface EventTypeConfig<P = any> {
   label: string;
   defaultParams: () => P;

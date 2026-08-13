@@ -1,4 +1,4 @@
-const { useState, useMemo } = React;
+import { useState, useMemo } from 'react';
 
 import { lumpSum } from "./lumpSum";
 import { changeMonthlyPayment } from "./changeMonthlyPayment";

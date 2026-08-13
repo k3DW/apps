@@ -1,4 +1,5 @@
-const { useState, useMemo } = React;
+import { useState, useMemo } from 'react';
+import ReactDOM from 'react-dom/client';
 
 import { styles } from "./styles";
 
