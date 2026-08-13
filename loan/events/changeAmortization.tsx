@@ -2,7 +2,7 @@ import { EventTypeConfig } from "./_config";
 import { Field } from "../components/Field";
 
 interface ChangeAmortizationParams {
-  years: number | "";
+  years: number;
 }
 
 function ChangeAmortizationFields({ params, onChange }: { params: ChangeAmortizationParams; onChange: (p: ChangeAmortizationParams) => void }) {

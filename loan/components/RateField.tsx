@@ -9,8 +9,8 @@ const COMPOUNDING_OPTIONS: RadioOption<Compounding>[] = [
 ];
 
 export interface RateFieldProps {
-  value: number | "";
-  onChange: (value: number | "") => void;
+  value: number;
+  onChange: (value: number) => void;
   compounding: Compounding;
   onCompoundingChange: (value: Compounding) => void;
 }

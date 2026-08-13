@@ -3,9 +3,9 @@ import { LoanEvent } from "./events/events";
 
 export interface LoanState {
   id: number;
-  principal: number | "";
-  years: number | "";
-  rate: number | "";
+  principal: number;
+  years: number;
+  rate: number;
   compounding: Compounding;
   startMonth: number; // 1-12
   startYear: number;

@@ -2,7 +2,7 @@ import { EventTypeConfig } from "./_config";
 import { Field } from "../components/Field";
 
 interface ChangeMonthlyPaymentParams {
-  amount: number | "";
+  amount: number;
 }
 
 function ChangeMonthlyPaymentFields({ params, onChange }: { params: ChangeMonthlyPaymentParams; onChange: (p: ChangeMonthlyPaymentParams) => void }) {

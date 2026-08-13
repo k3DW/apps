@@ -2,7 +2,7 @@ import { useState, type ChangeEvent } from "react";
 import { styles } from "../styles";
 
 export interface NumericBoxProps {
-  value: number | "";
+  value: number;
   onChange: (value: number) => void;
   prefix?: string;
 }

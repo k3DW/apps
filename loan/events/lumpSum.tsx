@@ -2,7 +2,7 @@ import { EventTypeConfig } from "./_config";
 import { Field } from "../components/Field";
 
 interface LumpSumParams {
-  amount: number | "";
+  amount: number;
 }
 
 function LumpSumFields({ params, onChange }: { params: LumpSumParams; onChange: (p: LumpSumParams) => void }) {
