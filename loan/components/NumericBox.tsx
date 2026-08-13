@@ -1,10 +1,9 @@
-const { useState, useMemo } = React;
-
+import { useState, type ChangeEvent } from "react";
 import { styles } from "../styles";
 
 export interface NumericBoxProps {
   value: number | "";
-  onChange: (value: number | "") => void;
+  onChange: (value: number) => void;
   prefix?: string;
 }
 
@@ -19,8 +18,8 @@ const isPositiveNumber = (s: String): boolean => {
 export function NumericBox({ value, onChange, prefix }: NumericBoxProps) {
   const [text, setText] = useState(String(value));
 
-  const handleChange = (e) => {
-    const newText = e.target.value;
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const newText : string = e.target.value;
     setText(newText); // always update the local text so the user can keep typing
     // if invalid, we simply don't call onChange
     if (isPositiveNumber(newText)) {

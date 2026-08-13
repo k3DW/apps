@@ -1,6 +1,7 @@
+import { type CSSProperties } from "react";
 import { theme } from "./theme";
 
-export const styles: Record<string, React.CSSProperties> = {
+export const styles: Record<string, CSSProperties> = {
   page: {
     minHeight: "100%",
     background: theme.color.bg,

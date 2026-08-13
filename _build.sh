@@ -5,7 +5,11 @@ if [ -n "$1" ]; then
     exit 1
 fi
 
-node "$(dirname ${BASH_SOURCE[0]})/_build.js" \
+cd $(dirname ${BASH_SOURCE[0]})
+
+npx tsc --noEmit \
+    || exit 1
+node ./_build.js \
     || exit 1
 bundle exec jekyll serve --incremental \
     || exit 1

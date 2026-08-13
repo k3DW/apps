@@ -13,7 +13,7 @@ interface MonthlyPaymentInput {
   principal: number;
   years: number;
   annualRatePct: number;
-  compounding?: Compounding;
+  compounding: Compounding;
 }
 
 export function calculateMonthlyPayment({
