@@ -1,19 +1,19 @@
 .numeric_field {
   display: flex;
   align-items: center;
-  border: 1px solid #c9c0ac;
-  border-radius: 4px;
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius);
   background: #ffffff;
   padding: 10px 14px;
 }
 
 .numeric_field.invalid {
-  background: #ff8282;
+  background: var(--color-error-red);
 }
 
 .numeric_field_prefix {
   margin-right: 6px;
-  color: #8a7b5c;
+  color: var(--color-gold-muted);
 }
 
 .numeric_field_input {
@@ -21,7 +21,7 @@
   outline: none;
   width: 100%;
   font-size: 16px;
-  font-family: 'IBM Plex Mono', 'Courier New', monospace;
-  color: #1c2b33;
+  font-family: var(--font-mono);
+  color: var(--color-panel);
   background: transparent;
 }

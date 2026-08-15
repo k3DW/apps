@@ -1,0 +1,20 @@
+:root {
+  --color-bg: #F7F4EE;
+  --color-ink: #1C2B33;
+  --color-ink-soft: #5C6B73;
+  --color-hairline: #C9C0AC;
+  --color-gold: #B99B5A;
+  --color-gold-muted: #8A7B5C;
+  --color-panel: #1C2B33;
+  --color-panel-text: #F7F4EE;
+  --color-panel-text-muted: #C9C0AC;
+  --color-panel-border: #3A4A52;
+  --color-white: #FFFFFF;
+  --color-error-red: #ff8282;
+
+  --font-display: 'Georgia', serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+  --space-unit: 4px;
+  --radius: 4px;
+}

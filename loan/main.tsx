@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import ReactDOM from 'react-dom/client';
 
 import { styles } from "./styles";
+import "./theme.css"
 
 import { indexToLabel } from "./calendar";
 
