@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import ReactDOM from 'react-dom/client';
 
 import { styles } from "./styles";
+import "./main.css"
 import "./theme.css"
 
 import { indexToLabel } from "./calendar";
@@ -22,14 +23,7 @@ import { generateSchedule, ScheduleResult } from "./schedule";
 
 function LoanPanel({ loan, onUpdate }: { loan: LoanState; onUpdate: (patch: Partial<LoanState>) => void }) {
   return (
-    <div
-      style={{
-        border: "1px solid #e5e7eb",
-        borderRadius: 12,
-        padding: 20,
-        background: "#fff",
-      }}
-    >
+    <div className="loan_panel">
       <div style={{ display: "flex", flexWrap: "nowrap", gap: 8 }}>
         <div style={{ flex: 2 }}>
           <LabeledNumericField label="Principal" value={loan.principal} onChange={(v: number) => onUpdate({ principal: v })} prefix="$" />

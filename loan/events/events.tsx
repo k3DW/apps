@@ -46,7 +46,7 @@ export function EventsSection({ loan, onChange }: { loan: LoanState; onChange: (
   }
 
   return (
-    <div className="field_wrapper">
+    <div>
       <label className="field_label">Events</label>
       {loan.events.length === 0 && (
         <div style={{ fontSize: 13, color: "#666", marginBottom: 8 }}>No events yet.</div>

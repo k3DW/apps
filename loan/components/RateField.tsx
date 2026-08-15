@@ -17,7 +17,7 @@ export interface RateFieldProps {
 
 export function RateField({ value, onChange, compounding, onCompoundingChange }: RateFieldProps) {
   return (
-    <div className="field_wrapper">
+    <div>
       <label className="field_label">Interest</label>
       <div style={{ display: "flex", gap: 8 }}>
         <div style={{ flex: 1 }}>

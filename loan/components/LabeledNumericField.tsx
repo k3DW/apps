@@ -11,7 +11,7 @@ interface LabeledNumericFieldProps {
 
 export function LabeledNumericField({ label, value, onChange, prefix, suffix }: LabeledNumericFieldProps) {
   return (
-    <div className="field_wrapper">
+    <div>
       <label className="field_label">{label}</label>
       <NumericField value={value} onChange={onChange} prefix={prefix} suffix={suffix} />
     </div>

@@ -14,7 +14,7 @@ export function StartField({ month, year, onMonthChange, onYearChange }: StartFi
   const yearOptions = Array.from({ length: 16 }, (_, i) => currentYear - 5 + i);
 
   return (
-    <div className="field_wrapper">
+    <div>
       <label className="field_label">Start month</label>
       <div className="date_dropdown_field" style={{ display: "flex", gap: 8 }}>
         <select value={month} onChange={(e) => onMonthChange(Number(e.target.value))} style={{ ...styles.fieldInput, flex: 5 }}>

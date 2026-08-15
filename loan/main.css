@@ -1,0 +1,9 @@
+.loan_panel {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--space-unit) * 4.5);
+}
