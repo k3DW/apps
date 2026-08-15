@@ -62,7 +62,7 @@ export function EventsSection({ loan, onChange }: { loan: LoanState; onChange: (
             }}
           >
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-              <div style={{ flex: 1, minWidth: 140 }}>
+              <div style={{ flex: 1, minWidth: 165 }}>
                 <label className="field_label">Month</label>
                 <select value={ev.monthIndex} onChange={(e) => updateEvent(ev.id, { monthIndex: Number(e.target.value) })} style={{ ...styles.fieldInput, background: "#fff" }}>
                   {monthOptions.map((opt) => (
@@ -70,7 +70,7 @@ export function EventsSection({ loan, onChange }: { loan: LoanState; onChange: (
                   ))}
                 </select>
               </div>
-              <div style={{ flex: 1, minWidth: 160 }}>
+              <div style={{ flex: 2 }}>
                 <label className="field_label">Type</label>
                 <select
                   value={ev.type}

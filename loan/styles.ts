@@ -38,10 +38,6 @@ export const styles: Record<string, CSSProperties> = {
     paddingBottom: theme.space(4),
   },
 
-  radioGroup: {
-    display: "flex",
-    gap: theme.space(4),
-  },
   radioOption: {
     display: "flex",
     alignItems: "center",

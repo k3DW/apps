@@ -21,7 +21,7 @@
   margin-bottom: calc(var(--space-unit) * 1.5);
 }
 
-.numeric_field {
+.numeric_field, .date_dropdown_field {
   display: flex;
   align-items: center;
   border: 1px solid var(--color-hairline);

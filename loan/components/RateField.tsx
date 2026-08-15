@@ -4,8 +4,8 @@ import { Compounding } from "../finance";
 import { NumericField } from "./NumericField";
 
 const COMPOUNDING_OPTIONS: RadioOption<Compounding>[] = [
-  { value: "monthly", label: "Monthly" },
-  { value: "semiannual", label: "Semi-annual" },
+  { value: "monthly", label: "Compounded monthly" },
+  { value: "semi-annually", label: "Compounded semi-annually" },
 ];
 
 export interface RateFieldProps {
@@ -18,16 +18,20 @@ export interface RateFieldProps {
 export function RateField({ value, onChange, compounding, onCompoundingChange }: RateFieldProps) {
   return (
     <div className="field_wrapper">
-      <div className="field_label_row_wrapper">
-        <label className="field_label in_row">Interest rate (%)</label>
-        <RadioGroup<Compounding>
-          name="compounding"
-          options={COMPOUNDING_OPTIONS}
-          value={compounding}
-          onChange={onCompoundingChange}
-        />
+      <label className="field_label">Interest</label>
+      <div style={{ display: "flex", gap: 8 }}>
+        <div style={{ flex: 1 }}>
+          <NumericField value={value} onChange={onChange} suffix="%" />
+        </div>
+        <div style={{ flex: 2 }}>
+          <RadioGroup<Compounding>
+            name="compounding"
+            options={COMPOUNDING_OPTIONS}
+            value={compounding}
+            onChange={onCompoundingChange}
+          />
+        </div>
       </div>
-      <NumericField value={value} onChange={onChange} />
     </div>
   );
 }

@@ -30,10 +30,22 @@ function LoanPanel({ loan, onUpdate }: { loan: LoanState; onUpdate: (patch: Part
         background: "#fff",
       }}
     >
-      <LabeledNumericField label="Principal (loan amount)" value={loan.principal} onChange={(v: number) => onUpdate({ principal: v })} prefix="$" />
-      <LabeledNumericField label="Amortization (years)" value={loan.years} onChange={(v: number) => onUpdate({ years: v })} />
-      <RateField value={loan.rate} onChange={(v: number) => onUpdate({ rate: v })} compounding={loan.compounding} onCompoundingChange={(v) => onUpdate({ compounding: v })} />
-      <StartField month={loan.startMonth} year={loan.startYear} onMonthChange={(m: number) => onUpdate({ startMonth: m })} onYearChange={(y) => onUpdate({ startYear: y })} />
+      <div style={{ display: "flex", flexWrap: "nowrap", gap: 8 }}>
+        <div style={{ flex: 2 }}>
+          <LabeledNumericField label="Principal" value={loan.principal} onChange={(v: number) => onUpdate({ principal: v })} prefix="$" />
+        </div>
+        <div style={{ flex: 5 }}>
+          <RateField value={loan.rate} onChange={(v: number) => onUpdate({ rate: v })} compounding={loan.compounding} onCompoundingChange={(v) => onUpdate({ compounding: v })} />
+        </div>
+      </div>
+      <div style={{ display: "flex", flexWrap: "nowrap", gap: 8 }}>
+        <div style={{ flex: 1 }}>
+          <LabeledNumericField label="Amortization" value={loan.years} onChange={(v: number) => onUpdate({ years: v })} suffix="years" />
+        </div>
+        <div style={{ flex: 2 }}>
+          <StartField month={loan.startMonth} year={loan.startYear} onMonthChange={(m: number) => onUpdate({ startMonth: m })} onYearChange={(y) => onUpdate({ startYear: y })} />
+        </div>
+      </div>
       <EventsSection loan={loan} onChange={(events) => onUpdate({ events })} />
     </div>
   );

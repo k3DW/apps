@@ -14,9 +14,10 @@ export interface RadioGroupProps<T extends string> {
 
 export function RadioGroup<T extends string>({ name, options, value, onChange }: RadioGroupProps<T>) {
   return (
-    <div style={styles.radioGroup}>
+    <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+      <div style={{ flex: "auto" }}></div>
       {options.map((opt) => (
-        <label key={opt.value} style={styles.radioOption}>
+        <label key={opt.value} style={{ ...styles.radioOption, flex: "0" }}>
           <input
             type="radio"
             name={name}
@@ -28,6 +29,7 @@ export function RadioGroup<T extends string>({ name, options, value, onChange }:
           {opt.label}
         </label>
       ))}
+      <div style={{ flex: "auto" }}></div>
     </div>
   );
 }

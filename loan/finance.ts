@@ -1,8 +1,8 @@
-export type Compounding = "monthly" | "semiannual";
+export type Compounding = "monthly" | "semi-annually";
 
 export function monthlyRateFromNominal(annualRatePct: number, compounding: Compounding): number {
   const annual = annualRatePct / 100;
-  if (compounding === "semiannual") {
+  if (compounding === "semi-annually") {
     const semiAnnualRate = annual / 2;
     return Math.pow(1 + semiAnnualRate, 2 / 12) - 1;
   }
