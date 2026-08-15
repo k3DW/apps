@@ -1,5 +1,6 @@
 exclude:
   - "**/*.ts"
   - "**/*.tsx"
+  - "/tsconfig.json"
 include:
   - _generated
