@@ -1,5 +1,5 @@
 import { EventTypeConfig } from "./_config";
-import { Field } from "../components/Field";
+import { LabeledNumericField } from "../components/LabeledNumericField";
 
 interface ChangeMonthlyPaymentParams {
   amount: number;
@@ -7,10 +7,10 @@ interface ChangeMonthlyPaymentParams {
 
 function ChangeMonthlyPaymentFields({ params, onChange }: { params: ChangeMonthlyPaymentParams; onChange: (p: ChangeMonthlyPaymentParams) => void }) {
   return (
-    <Field
+    <LabeledNumericField
       label="New monthly payment"
       value={params.amount}
-      onChange={(v) => onChange({ ...params, amount: v })}
+      onChange={(v: number) => onChange({ ...params, amount: v })}
       prefix="$"
     />
   );

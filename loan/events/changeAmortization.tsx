@@ -1,5 +1,5 @@
 import { EventTypeConfig } from "./_config";
-import { Field } from "../components/Field";
+import { LabeledNumericField } from "../components/LabeledNumericField";
 
 interface ChangeAmortizationParams {
   years: number;
@@ -7,10 +7,10 @@ interface ChangeAmortizationParams {
 
 function ChangeAmortizationFields({ params, onChange }: { params: ChangeAmortizationParams; onChange: (p: ChangeAmortizationParams) => void }) {
   return (
-    <Field
+    <LabeledNumericField
       label="New amortization (years)"
       value={params.years}
-      onChange={(v) => onChange({ ...params, years: v })}
+      onChange={(v: number) => onChange({ ...params, years: v })}
     />
   );
 }

@@ -1,5 +1,5 @@
 import { EventTypeConfig } from "./_config";
-import { Field } from "../components/Field";
+import { LabeledNumericField } from "../components/LabeledNumericField";
 
 interface LumpSumParams {
   amount: number;
@@ -7,10 +7,10 @@ interface LumpSumParams {
 
 function LumpSumFields({ params, onChange }: { params: LumpSumParams; onChange: (p: LumpSumParams) => void }) {
   return (
-    <Field
+    <LabeledNumericField
       label="Lump sum amount"
       value={params.amount}
-      onChange={(v) => onChange({ ...params, amount: v })}
+      onChange={(v: number) => onChange({ ...params, amount: v })}
       prefix="$"
     />
   );

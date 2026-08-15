@@ -7,7 +7,7 @@ import { indexToLabel } from "./calendar";
 
 import { EventsSection } from "./events/events"
 
-import { Field } from "./components/Field";
+import { LabeledNumericField } from "./components/LabeledNumericField";
 import { RateField } from "./components/RateField";
 import { StartField } from "./components/StartField";
 import { PaymentSummary } from "./components/PaymentSummary";
@@ -31,10 +31,10 @@ function LoanPanel({ loan, onUpdate }: { loan: LoanState; onUpdate: (patch: Part
         background: "#fff",
       }}
     >
-      <Field label="Principal (loan amount)" value={loan.principal} onChange={(v) => onUpdate({ principal: v })} prefix="$" />
-      <Field label="Amortization (years)" value={loan.years} onChange={(v) => onUpdate({ years: v })} />
-      <RateField value={loan.rate} onChange={(v) => onUpdate({ rate: v })} compounding={loan.compounding} onCompoundingChange={(v) => onUpdate({ compounding: v })} />
-      <StartField month={loan.startMonth} year={loan.startYear} onMonthChange={(m) => onUpdate({ startMonth: m })} onYearChange={(y) => onUpdate({ startYear: y })} />
+      <LabeledNumericField label="Principal (loan amount)" value={loan.principal} onChange={(v: number) => onUpdate({ principal: v })} prefix="$" />
+      <LabeledNumericField label="Amortization (years)" value={loan.years} onChange={(v: number) => onUpdate({ years: v })} />
+      <RateField value={loan.rate} onChange={(v: number) => onUpdate({ rate: v })} compounding={loan.compounding} onCompoundingChange={(v) => onUpdate({ compounding: v })} />
+      <StartField month={loan.startMonth} year={loan.startYear} onMonthChange={(m: number) => onUpdate({ startMonth: m })} onYearChange={(y) => onUpdate({ startYear: y })} />
       <EventsSection loan={loan} onChange={(events) => onUpdate({ events })} />
       <PaymentSummary
         monthlyPayment={result.monthlyPayment}
