@@ -1,7 +1,7 @@
 import { RadioGroup, RadioOption } from "./RadioGroup";
 import { Compounding } from "../finance";
 import { styles } from "../styles";
-import { NumericBox } from "./NumericBox";
+import { NumericField } from "./NumericField";
 
 const COMPOUNDING_OPTIONS: RadioOption<Compounding>[] = [
   { value: "monthly", label: "Monthly" },
@@ -27,7 +27,7 @@ export function RateField({ value, onChange, compounding, onCompoundingChange }:
           onChange={onCompoundingChange}
         />
       </div>
-      <NumericBox value={value} onChange={onChange} />
+      <NumericField value={value} onChange={onChange} />
     </div>
   );
 }

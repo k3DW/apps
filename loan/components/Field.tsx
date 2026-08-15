@@ -1,5 +1,5 @@
 import { styles } from "../styles";
-import { NumericBox } from "./NumericBox";
+import { NumericField } from "./NumericField";
 
 export interface FieldProps {
   label: string;
@@ -12,7 +12,7 @@ export function Field({ label, value, onChange, prefix }: FieldProps) {
   return (
     <div style={styles.fieldWrap}>
       <label style={styles.fieldLabel}>{label}</label>
-      <NumericBox value={value} onChange={onChange} prefix={prefix} />
+      <NumericField value={value} onChange={onChange} prefix={prefix} />
     </div>
   );
 }

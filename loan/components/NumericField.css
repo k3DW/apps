@@ -1,0 +1,27 @@
+.numeric_field {
+  display: flex;
+  align-items: center;
+  border: 1px solid #c9c0ac;
+  border-radius: 4px;
+  background: #ffffff;
+  padding: 10px 14px;
+}
+
+.numeric_field.invalid {
+  background: #ff8282;
+}
+
+.numeric_field_prefix {
+  margin-right: 6px;
+  color: #8a7b5c;
+}
+
+.numeric_field_input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 16px;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  color: #1c2b33;
+  background: transparent;
+}

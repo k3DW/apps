@@ -1,7 +1,7 @@
 import { useState, type ChangeEvent } from "react";
-import { styles } from "../styles";
+import "./NumericField.css";
 
-export interface NumericBoxProps {
+interface NumericFieldProps {
   value: number;
   onChange: (value: number) => void;
   prefix?: string;
@@ -15,7 +15,7 @@ const isPositiveNumber = (s: String): boolean => {
   return false;
 };
 
-export function NumericBox({ value, onChange, prefix }: NumericBoxProps) {
+export function NumericField({ value, onChange, prefix }: NumericFieldProps) {
   const [text, setText] = useState(String(value));
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -28,13 +28,13 @@ export function NumericBox({ value, onChange, prefix }: NumericBoxProps) {
   };
 
   return (
-    <div style={isPositiveNumber(text) ? styles.fieldBox : styles.fieldBoxInvalid}>
-      {prefix && <span style={styles.fieldPrefix}>{prefix}</span>}
+    <div className={isPositiveNumber(text) ? "numeric_field" : "numeric_field invalid"}>
+      {prefix && <span className="numeric_field_prefix">{prefix}</span>}
       <input
         type="text"
         value={text}
         onChange={handleChange}
-        style={styles.fieldInput}
+        className="numeric_field_input"
       />
     </div>
   );
