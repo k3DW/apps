@@ -38,20 +38,6 @@ export const styles: Record<string, CSSProperties> = {
     paddingBottom: theme.space(4),
   },
 
-  fieldWrap: { marginBottom: theme.space(4.5) },
-  fieldLabel: {
-    display: "block",
-    fontSize: 12,
-    letterSpacing: "0.05em",
-    color: theme.color.inkSoft,
-    marginBottom: theme.space(1.5),
-  },
-  fieldLabelRow: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginBottom: theme.space(1.5),
-  },
   radioGroup: {
     display: "flex",
     gap: theme.space(4),

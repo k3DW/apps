@@ -1,3 +1,26 @@
+.field_wrapper {
+  margin-bottom: calc(var(--space-unit) * 4.5);
+}
+
+.field_label {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  color: var(--color-ink-soft);
+  margin-bottom: calc(var(--space-unit) * 1.5);
+}
+
+.field_label.in_row {
+  margin-bottom: 0;
+}
+
+.field_label_row_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: calc(var(--space-unit) * 1.5);
+}
+
 .numeric_field {
   display: flex;
   align-items: center;

@@ -1,5 +1,6 @@
-import { MONTH_NAMES } from "../calendar";
+import "./components.css";
 import { styles } from "../styles";
+import { MONTH_NAMES } from "../calendar";
 
 export interface StartFieldProps {
   month: number;
@@ -13,8 +14,8 @@ export function StartField({ month, year, onMonthChange, onYearChange }: StartFi
   const yearOptions = Array.from({ length: 16 }, (_, i) => currentYear - 5 + i);
 
   return (
-    <div style={styles.fieldWrap}>
-      <label style={styles.fieldLabel}>Start month</label>
+    <div className="field_wrapper">
+      <label className="field_label">Start month</label>
       <div style={{ display: "flex", gap: 8 }}>
         <select value={month} onChange={(e) => onMonthChange(Number(e.target.value))} style={{ ...styles.fieldInput, flex: 2 }}>
           {MONTH_NAMES.map((name, i) => (

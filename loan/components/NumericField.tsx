@@ -1,5 +1,5 @@
+import "./components.css";
 import { useState, type ChangeEvent } from "react";
-import "./NumericField.css";
 
 interface NumericFieldProps {
   value: number;

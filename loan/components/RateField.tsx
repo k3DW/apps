@@ -1,6 +1,6 @@
+import "./components.css";
 import { RadioGroup, RadioOption } from "./RadioGroup";
 import { Compounding } from "../finance";
-import { styles } from "../styles";
 import { NumericField } from "./NumericField";
 
 const COMPOUNDING_OPTIONS: RadioOption<Compounding>[] = [
@@ -17,9 +17,9 @@ export interface RateFieldProps {
 
 export function RateField({ value, onChange, compounding, onCompoundingChange }: RateFieldProps) {
   return (
-    <div style={styles.fieldWrap}>
-      <div style={styles.fieldLabelRow}>
-        <label style={{ ...styles.fieldLabel, marginBottom: 0 }}>Interest rate (%)</label>
+    <div className="field_wrapper">
+      <div className="field_label_row_wrapper">
+        <label className="field_label in_row">Interest rate (%)</label>
         <RadioGroup<Compounding>
           name="compounding"
           options={COMPOUNDING_OPTIONS}

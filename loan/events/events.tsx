@@ -46,8 +46,8 @@ export function EventsSection({ loan, onChange }: { loan: LoanState; onChange: (
   }
 
   return (
-    <div style={styles.fieldWrap}>
-      <label style={styles.fieldLabel}>Events</label>
+    <div className="field_wrapper">
+      <label className="field_label">Events</label>
       {loan.events.length === 0 && (
         <div style={{ fontSize: 13, color: "#666", marginBottom: 8 }}>No events yet.</div>
       )}
@@ -63,7 +63,7 @@ export function EventsSection({ loan, onChange }: { loan: LoanState; onChange: (
           >
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
               <div style={{ flex: 1, minWidth: 140 }}>
-                <label style={{ ...styles.fieldLabel, fontSize: 12 }}>Month</label>
+                <label className="field_label">Month</label>
                 <select value={ev.monthIndex} onChange={(e) => updateEvent(ev.id, { monthIndex: Number(e.target.value) })} style={{ ...styles.fieldInput, background: "#fff" }}>
                   {monthOptions.map((opt) => (
                     <option key={opt.idx} value={opt.idx}>{opt.label}</option>
@@ -71,7 +71,7 @@ export function EventsSection({ loan, onChange }: { loan: LoanState; onChange: (
                 </select>
               </div>
               <div style={{ flex: 1, minWidth: 160 }}>
-                <label style={{ ...styles.fieldLabel, fontSize: 12 }}>Type</label>
+                <label className="field_label">Type</label>
                 <select
                   value={ev.type}
                   onChange={(e) => {
