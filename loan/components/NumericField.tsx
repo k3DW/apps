@@ -5,6 +5,7 @@ interface NumericFieldProps {
   value: number;
   onChange: (value: number) => void;
   prefix?: string;
+  suffix?: string;
 }
 
 const isPositiveNumber = (s: String): boolean => {
@@ -15,7 +16,7 @@ const isPositiveNumber = (s: String): boolean => {
   return false;
 };
 
-export function NumericField({ value, onChange, prefix }: NumericFieldProps) {
+export function NumericField({ value, onChange, prefix, suffix }: NumericFieldProps) {
   const [text, setText] = useState(String(value));
 
   useEffect(() => {
@@ -40,6 +41,7 @@ export function NumericField({ value, onChange, prefix }: NumericFieldProps) {
         onChange={handleChange}
         className="numeric_field_input"
       />
+      {suffix && <span className="numeric_field_suffix">{suffix}</span>}
     </div>
   );
 }

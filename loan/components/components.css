@@ -39,6 +39,11 @@
   color: var(--color-gold-muted);
 }
 
+.numeric_field_suffix {
+  margin-left: 6px;
+  color: var(--color-gold-muted);
+}
+
 .numeric_field_input {
   border: none;
   outline: none;
