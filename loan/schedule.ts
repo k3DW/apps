@@ -12,7 +12,7 @@ interface ScheduleMonth {
   balance: number;
 }
 
-interface ScheduleResult {
+export interface ScheduleResult {
   schedule: ScheduleMonth[];
   monthlyPayment: number; // contractual fixed payment
   totalPaid: number;

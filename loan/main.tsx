@@ -14,15 +14,13 @@ import { StartField } from "./components/StartField";
 import { PaymentSummary } from "./components/PaymentSummary";
 
 import { LoanState, makeDefaultLoan } from "./state";
-import { generateSchedule } from "./schedule";
+import { generateSchedule, ScheduleResult } from "./schedule";
 
 /* ------------------------------------------------------------------ */
 /* loan panel                                                           */
 /* ------------------------------------------------------------------ */
 
 function LoanPanel({ loan, onUpdate }: { loan: LoanState; onUpdate: (patch: Partial<LoanState>) => void }) {
-  const result = useMemo(() => generateSchedule(loan), [loan]);
-
   return (
     <div
       style={{
@@ -37,12 +35,6 @@ function LoanPanel({ loan, onUpdate }: { loan: LoanState; onUpdate: (patch: Part
       <RateField value={loan.rate} onChange={(v: number) => onUpdate({ rate: v })} compounding={loan.compounding} onCompoundingChange={(v) => onUpdate({ compounding: v })} />
       <StartField month={loan.startMonth} year={loan.startYear} onMonthChange={(m: number) => onUpdate({ startMonth: m })} onYearChange={(y) => onUpdate({ startYear: y })} />
       <EventsSection loan={loan} onChange={(events) => onUpdate({ events })} />
-      <PaymentSummary
-        monthlyPayment={result.monthlyPayment}
-        totalPaid={result.totalPaid}
-        totalInterest={result.totalInterest}
-        payoffLabel={indexToLabel(result.payoffIdx, false)}
-      />
     </div>
   );
 }
@@ -97,7 +89,8 @@ function LoansApp() {
     setLoans((prev) => prev.map((l) => (l.id === id ? { ...l, ...patch } : l)));
   }
 
-  const activeLoan = loans.find((l) => l.id === activeId)!;
+  const activeLoan: LoanState = loans.find((l) => l.id === activeId)!;
+  const activeSchedule: ScheduleResult = useMemo(() => generateSchedule(activeLoan), [activeLoan]);
 
   return (
     <div style={styles.page}>
@@ -105,6 +98,12 @@ function LoansApp() {
         <h1 style={styles.heading}>Loan Calculator</h1>
         <TabBar loans={loans} activeId={activeId} onSelect={setActiveId} onAdd={addLoan} onClose={closeLoan} />
         <LoanPanel loan={activeLoan} onUpdate={(patch) => updateLoan(activeLoan.id, patch)} />
+        <PaymentSummary
+          monthlyPayment={activeSchedule.monthlyPayment}
+          totalPaid={activeSchedule.totalPaid}
+          totalInterest={activeSchedule.totalInterest}
+          payoffLabel={indexToLabel(activeSchedule.payoffIdx, false)}
+        />
       </div>
     </div>
   );
