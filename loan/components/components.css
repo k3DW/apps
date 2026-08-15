@@ -6,17 +6,6 @@
   margin-bottom: calc(var(--space-unit) * 1.5);
 }
 
-.field_label.in_row {
-  margin-bottom: 0;
-}
-
-.field_label_row_wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: calc(var(--space-unit) * 1.5);
-}
-
 .numeric_field, .date_dropdown_field {
   display: flex;
   align-items: center;
