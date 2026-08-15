@@ -1,5 +1,5 @@
 import "./components.css";
-import { useState, type ChangeEvent } from "react";
+import { useState, useEffect, type ChangeEvent } from "react";
 
 interface NumericFieldProps {
   value: number;
@@ -17,6 +17,10 @@ const isPositiveNumber = (s: String): boolean => {
 
 export function NumericField({ value, onChange, prefix }: NumericFieldProps) {
   const [text, setText] = useState(String(value));
+
+  useEffect(() => {
+    setText(String(value));
+  }, [value]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newText : string = e.target.value;
