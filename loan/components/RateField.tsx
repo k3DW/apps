@@ -2,6 +2,7 @@ import "./components.css";
 import { RadioGroup, RadioOption } from "./RadioGroup";
 import { Compounding } from "../finance";
 import { NumericField } from "./NumericField";
+import { HFlexBox } from "./FlexBox";
 
 const COMPOUNDING_OPTIONS: RadioOption<Compounding>[] = [
   { value: "monthly", label: "Compounded monthly" },
@@ -19,19 +20,15 @@ export function RateField({ value, onChange, compounding, onCompoundingChange }:
   return (
     <div>
       <label className="field_label">Interest</label>
-      <div style={{ display: "flex", gap: 8 }}>
-        <div style={{ flex: 1 }}>
-          <NumericField value={value} onChange={onChange} suffix="%" />
-        </div>
-        <div style={{ flex: 2 }}>
-          <RadioGroup<Compounding>
-            name="compounding"
-            options={COMPOUNDING_OPTIONS}
-            value={compounding}
-            onChange={onCompoundingChange}
-          />
-        </div>
-      </div>
+      <HFlexBox flexValues={[1, 2]}>
+        <NumericField value={value} onChange={onChange} suffix="%" />
+        <RadioGroup<Compounding>
+          name="compounding"
+          options={COMPOUNDING_OPTIONS}
+          value={compounding}
+          onChange={onCompoundingChange}
+        />
+      </HFlexBox>
     </div>
   );
 }

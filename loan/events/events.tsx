@@ -64,7 +64,7 @@ export function EventsSection({ loan, onChange }: { loan: LoanState; onChange: (
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
               <div style={{ flex: 1, minWidth: 165 }}>
                 <label className="field_label">Month</label>
-                <select value={ev.monthIndex} onChange={(e) => updateEvent(ev.id, { monthIndex: Number(e.target.value) })} style={{ ...styles.fieldInput, background: "#fff" }}>
+                <select className="dropdown_field_input" value={ev.monthIndex} onChange={(e) => updateEvent(ev.id, { monthIndex: Number(e.target.value) })} style={{ background: "#fff" }}>
                   {monthOptions.map((opt) => (
                     <option key={opt.idx} value={opt.idx}>{opt.label}</option>
                   ))}
@@ -73,12 +73,13 @@ export function EventsSection({ loan, onChange }: { loan: LoanState; onChange: (
               <div style={{ flex: 2 }}>
                 <label className="field_label">Type</label>
                 <select
+                  className="dropdown_field_input"
                   value={ev.type}
                   onChange={(e) => {
                     const type = e.target.value;
                     updateEvent(ev.id, { type, params: EVENT_TYPES[type].defaultParams() });
                   }}
-                  style={{ ...styles.fieldInput, background: "#fff" }}
+                  style={{ background: "#fff" }}
                 >
                   {Object.entries(EVENT_TYPES).map(([key, cfg]) => (
                     <option key={key} value={key}>{cfg.label}</option>
@@ -86,7 +87,7 @@ export function EventsSection({ loan, onChange }: { loan: LoanState; onChange: (
                 </select>
               </div>
             </div>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 8, alignItems: "flex-end", marginTop: 8 }}>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 8 }}>
               <div style={{ flex: 1, minWidth: 140 }}>
                 <Fields params={ev.params} onChange={(params) => updateEvent(ev.id, { params })} />
               </div>

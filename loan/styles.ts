@@ -51,16 +51,6 @@ export const styles: Record<string, CSSProperties> = {
     cursor: "pointer",
   },
 
-  fieldInput: {
-    border: "none",
-    outline: "none",
-    width: "100%",
-    fontSize: 16,
-    fontFamily: theme.font.mono,
-    color: theme.color.ink,
-    background: "transparent",
-  },
-
   panel: {
     marginTop: theme.space(8),
     padding: theme.space(6),
