@@ -17,14 +17,14 @@ export function RadioGroup<T extends string>({ name, options, value, onChange }:
   return (
     <VCenter>
       {options.map((opt) => (
-        <label key={opt.value} style={styles.radioOption}>
+        <label key={opt.value} className="radio_option">
           <input
+            className="radio_input"
             type="radio"
             name={name}
             value={opt.value}
             checked={value === opt.value}
             onChange={() => onChange(opt.value)}
-            style={styles.radioInput}
           />
           {opt.label}
         </label>

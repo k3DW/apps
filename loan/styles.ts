@@ -38,19 +38,6 @@ export const styles: Record<string, CSSProperties> = {
     paddingBottom: theme.space(4),
   },
 
-  radioOption: {
-    display: "flex",
-    alignItems: "center",
-    gap: theme.space(1),
-    fontSize: 12,
-    color: theme.color.inkSoft,
-    cursor: "pointer",
-  },
-  radioInput: {
-    accentColor: theme.color.goldMuted,
-    cursor: "pointer",
-  },
-
   panel: {
     marginTop: theme.space(8),
     padding: theme.space(6),

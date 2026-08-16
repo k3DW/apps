@@ -76,3 +76,17 @@
   color: var(--color-panel);
   background: transparent;
 }
+
+.radio_option {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--space-unit) * 1);
+  font-size: 12px;
+  color: var(--color-ink-soft);
+  cursor: pointer;
+}
+
+.radio_option {
+  accent-color: var(--color-gold-muted);
+  cursor: pointer;
+}
