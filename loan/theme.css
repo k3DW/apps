@@ -14,6 +14,8 @@
 
   --font-display: 'Georgia', serif;
   --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+  --font-size-input: 16px;
+  --font-size-label: 12px;
 
   --space-unit: 4px;
   --radius: 4px;
