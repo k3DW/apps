@@ -5,10 +5,10 @@ import { LoanEvent, EVENT_TYPES } from "./events/events";
 
 interface ScheduleMonth {
   idx: number;
-  interest: number;
+  interestPaid: number;
   principalPaid: number;
   lumpSum: number;
-  totalCash: number;
+  payment: number;
   balance: number;
 }
 
@@ -30,18 +30,12 @@ export function generateSchedule(loan: LoanState): ScheduleResult {
   const monthlyRate = monthlyRateFromNominal(Number(loan.rate), loan.compounding);
 
   const startIdx = absMonthIndex(loan.startMonth, loan.startYear);
-  const nominalMonths = Number(loan.years) * 12 || 0;
 
   const eventsByMonth = new Map<number, LoanEvent[]>();
-  let maxEventYears = Number(loan.years) || 0;
   for (const ev of loan.events) {
     const list = eventsByMonth.get(ev.monthIndex) || [];
     list.push(ev);
     eventsByMonth.set(ev.monthIndex, list);
-    if (ev.type === "changeAmortization") {
-      const years = Number(ev.params.years);
-      if (years > maxEventYears) maxEventYears = years;
-    }
   }
 
   const schedule: ScheduleMonth[] = [];
@@ -49,9 +43,9 @@ export function generateSchedule(loan: LoanState): ScheduleResult {
   let totalInterest = 0;
   let totalPaid = 0;
   let idx = startIdx;
-  const safetyCap = Math.max(nominalMonths, maxEventYears * 12, 600); // support event-driven amortization extensions
 
-  while (balance > 0.005 && idx - startIdx < safetyCap) {
+  const maxMonths = 12 * 100;
+  while (balance > 0.005 && idx - startIdx < maxMonths) {
     const monthEvents = eventsByMonth.get(idx) || [];
 
     let lumpSum = 0;
@@ -61,24 +55,12 @@ export function generateSchedule(loan: LoanState): ScheduleResult {
         if (config && config.apply) {
           lumpSum += config.apply(ev.params);
         }
-      }
-    }
-    if (lumpSum > balance) {
-      totalPaid += balance;
-      balance = 0;
-    } else {
-      totalPaid += lumpSum;
-      balance -= lumpSum;
-    }
-
-    for (const ev of monthEvents) {
-      if (ev.type === "changeMonthlyPayment") {
+      } else if (ev.type === "changeMonthlyPayment") {
         const amount = Number(ev.params.amount);
         if (amount > 0) {
           monthlyPayment = amount;
         }
-      }
-      if (ev.type === "changeAmortization") {
+      } else if (ev.type === "changeAmortization") {
         const years = Number(ev.params.years);
         if (years > 0) {
           monthlyPayment = calculateMonthlyPayment({
@@ -90,20 +72,31 @@ export function generateSchedule(loan: LoanState): ScheduleResult {
         }
       }
     }
+    if (lumpSum > balance) {
+      totalPaid += balance;
+      balance = 0;
+    } else {
+      totalPaid += lumpSum;
+      balance -= lumpSum;
+    }
 
-    const interest = balance * monthlyRate;
-    let principalPaid = monthlyPayment - interest;
-    if (principalPaid < 0) principalPaid = 0;
-    if (principalPaid > balance) principalPaid = balance;
+    const interestPaid = balance * monthlyRate;
+    let principalPaid = monthlyPayment - interestPaid;
+    if (principalPaid > balance) {
+      principalPaid = balance;
+    }
 
-    balance = balance - principalPaid;
-    if (balance < 0.005) balance = 0;
+    balance -= principalPaid;
+    if (balance < 0.005) {
+      principalPaid -= balance;
+      balance = 0;
+    }
 
-    const totalCash = interest + principalPaid;
-    totalInterest += interest;
-    totalPaid += totalCash;
+    const payment = interestPaid + principalPaid;
+    totalInterest += interestPaid;
+    totalPaid += payment;
 
-    schedule.push({ idx, interest, principalPaid, lumpSum, totalCash, balance });
+    schedule.push({ idx, interestPaid, principalPaid, lumpSum, payment, balance });
     idx++;
   }
 
