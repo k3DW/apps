@@ -15,7 +15,7 @@ export interface RadioGroupProps<T extends string> {
 
 export function RadioGroup<T extends string>({ name, options, value, onChange }: RadioGroupProps<T>) {
   return (
-    <VCenter>
+    <VCenter gap={4}>
       {options.map((opt) => (
         <label key={opt.value} className="radio_option">
           <input
